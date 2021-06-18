@@ -3,19 +3,19 @@ import java.util.Scanner;
 
 public class PickCup {
     public void start() {
+//        int winCount = 0;
+//        int lossCount = 0;
 
         Scanner s = new Scanner(System.in);
         String input;
 
-
-
-
-            System.out.println("You slide up to Fast Eddie's card table and plop down your cash.\n" +
+        System.out.println("You slide up to Fast Eddie's card table and plop down your cash.\n" +
                     "He glances at you out of the corner of his eye and starts shuffling.\n" +
                     "He lays down three cards.");
 
+        System.out.println("");
 
-            System.out.println("");
+
 do{
     System.out.println("do you wanna play?");
     input = s.nextLine();
@@ -31,47 +31,41 @@ do{
         int a = Integer.parseInt(s.nextLine());
 
     int playerAnwser = shuffle();
-    if (playerAnwser == a && a == 1) {
-        System.out.println("You nailed it! Fast Eddie reluctantly hands over your winnings, scowling.");
-        System.out.println("");
-        System.out.println("AA ## ##");
-        System.out.println("AA ## ##");
-        System.out.println("1  2  3");
-    } else if (playerAnwser == a && a == 2) {
-        System.out.println("You nailed it! Fast Eddie reluctantly hands over your winnings, scowling.");
-        System.out.println("");
-        System.out.println("## AA ##");
-        System.out.println("## AA ##");
-        System.out.println("1  2  3");
-    } else if (playerAnwser == a && a == 3) {
-        System.out.println("You nailed it! Fast Eddie reluctantly hands over your winnings, scowling.");
-        System.out.println("");
-        System.out.println("## ## AA");
-        System.out.println("## ## AA");
-        System.out.println("1  2  3");
-    } else {
-        System.out.println("Ha! Fast Eddie wins again! The ace was card number " + playerAnwser);
-        if (playerAnwser == 1) {
-            System.out.println("AA ## ##");
-            System.out.println("AA ## ##");
-            System.out.println("1  2  3");
-        } else if (playerAnwser == 2) {
-            System.out.println("## AA ##");
-            System.out.println("## AA ##");
-            System.out.println("1  2  3");
-        } else {
-            System.out.println("## ## AA");
-            System.out.println("## ## AA");
-            System.out.println("1  2  3");
-        }
-    }
+    playGame(playerAnwser, a);
+
 
     }else{
         System.out.println("see ya");
         break;
     }
         }while(true);
+
+
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -85,4 +79,51 @@ do{
             return x;
         }
 
+        public Integer playGame(int playerAnwser, int a){
+            int winCount = 0;
+            int lossCount = 0;
+            if (playerAnwser == a && a == 1) {
+                System.out.println("You nailed it! Fast Eddie reluctantly hands over your winnings, scowling.");
+                System.out.println("");
+                System.out.println("AA ## ##");
+                System.out.println("AA ## ##");
+                System.out.println("1  2  3");
+                 winCount++;
+            } else if (playerAnwser == a && a == 2) {
+                System.out.println("You nailed it! Fast Eddie reluctantly hands over your winnings, scowling.");
+                System.out.println("");
+                System.out.println("## AA ##");
+                System.out.println("## AA ##");
+                System.out.println("1  2  3");
+                winCount++;
+            } else if (playerAnwser == a && a == 3) {
+                System.out.println("You nailed it! Fast Eddie reluctantly hands over your winnings, scowling.");
+                System.out.println("");
+                System.out.println("## ## AA");
+                System.out.println("## ## AA");
+                System.out.println("1  2  3");
+                winCount++;
+            } else {
+                System.out.println("Ha! Fast Eddie wins! The ace was card number " + playerAnwser);
+                if (playerAnwser == 1) {
+                    System.out.println("AA ## ##");
+                    System.out.println("AA ## ##");
+                    System.out.println("1  2  3");
+                    lossCount++;
+                } else if (playerAnwser == 2) {
+                    System.out.println("## AA ##");
+                    System.out.println("## AA ##");
+                    System.out.println("1  2  3");
+                    lossCount++;
+                } else {
+                    System.out.println("## ## AA");
+                    System.out.println("## ## AA");
+                    System.out.println("1  2  3");
+                    lossCount++;
+                }
+            }
+//            System.out.println("you have won " + winCount + " games");
+//            System.out.println("You have lost " + lossCount + " games");
+            return a;
+        }
 }
