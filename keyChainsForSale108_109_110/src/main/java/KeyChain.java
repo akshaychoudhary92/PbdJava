@@ -1,9 +1,14 @@
 import java.util.Scanner;
 
 public class KeyChain {
+    int totalKeychains = 0;
+    int keychainPriceTotal= 0;
+    int keychainprice = 10;
+    Scanner s = new Scanner(System.in);
     public void start(){
-        Scanner s = new Scanner(System.in);
+
         String choice;
+
         boolean shouldBreak = true;
         System.out.println("Ye Olde Keychain Shoppe");
         System.out.println("");
@@ -22,16 +27,20 @@ do{
 
         switch(choice){
             case "1" :
-                add_keychains();
+                System.out.println("You have " + totalKeychains + " keychains. How many to add?\n" );
+                int addkeychain = Integer.parseInt(s.nextLine());
+                add_keychains(addkeychain);
                 break;
             case "2":
-                remove_keychains();
+                System.out.println("you have " + totalKeychains + ". How many to remove?\n");
+                int removeKeychain = Integer.parseInt(s.nextLine());;
+                remove_keychains(removeKeychain);
                 break;
             case "3" :
-                view_order();
+                view_order(totalKeychains, keychainPriceTotal);
                 break;
             case "4":
-                checkout();
+                checkout(totalKeychains, keychainPriceTotal);
                 shouldBreak = false;
                 break;
             default:
@@ -43,21 +52,33 @@ do{
 
     }
 
-    public void add_keychains(){
-        System.out.println("ADD KEYCHAINS");
-        System.out.println("");
+    public Integer add_keychains(int addkeychain){
+
+        totalKeychains += addkeychain;
+        System.out.println("You now have " + totalKeychains + " keychains!\n");
+        return totalKeychains;
     }
-    public void remove_keychains(){
-        System.out.println("REMOVE KEYCHAINS");
-        System.out.println("");
+
+    public Integer remove_keychains(int removeKeychain){
+        totalKeychains -= removeKeychain;
+        System.out.println("You now have " + totalKeychains + " keychains!\n");
+        return totalKeychains;
+
     }
-    public void view_order(){
-        System.out.println("VIEW ORDER");
-        System.out.println("");
+    public void view_order(int totalKeychains, int keychainPriceTotal){
+        keychainPriceTotal = totalKeychains * keychainprice;
+        System.out.println("you have " + totalKeychains + " keychains.");
+        System.out.println("keychains cost $" + keychainprice + " each.");
+        System.out.println("total cost is $" + keychainPriceTotal + ".\n");
     }
-    public void checkout(){
-        System.out.println("CHECKOUT");
-        System.out.println("");
+    public void checkout(int totalKeychains, int keychainPriceTotal){
+        keychainPriceTotal = totalKeychains * keychainprice;
+        System.out.println("what is you name?");
+        String name = s.nextLine();
+        System.out.println("you have " + totalKeychains + " keychains.");
+        System.out.println("keychains cost $" + keychainprice + " each.");
+        System.out.println("total cost is $" + keychainPriceTotal + ".\n");
+        System.out.println("thank you for your order, " + name + "!");
 
     }
 }
