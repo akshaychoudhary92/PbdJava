@@ -2,8 +2,11 @@ import java.util.Scanner;
 
 public class KeyChain {
     int totalKeychains = 0;
-    int keychainPriceTotal= 0;
+    double keychainPriceTotal= 0;
     int keychainprice = 10;
+    double salesTax = 8.25;
+    double shippingCost = 5.00;
+    double perKeychainShippingCost = 1.00;
     Scanner s = new Scanner(System.in);
     public void start(){
 
@@ -33,14 +36,15 @@ do{
                 break;
             case "2":
                 System.out.println("you have " + totalKeychains + ". How many to remove?\n");
-                int removeKeychain = Integer.parseInt(s.nextLine());;
-                remove_keychains(removeKeychain);
-                break;
+                int removeKeychain = Integer.parseInt(s.nextLine());
+                    remove_keychains(removeKeychain);
+                    break;
+
             case "3" :
-                view_order(totalKeychains, keychainPriceTotal);
+                view_order(totalKeychains, keychainPriceTotal, salesTax, shippingCost, perKeychainShippingCost);
                 break;
             case "4":
-                checkout(totalKeychains, keychainPriceTotal);
+                checkout(totalKeychains, keychainPriceTotal, salesTax, shippingCost, perKeychainShippingCost);
                 shouldBreak = false;
                 break;
             default:
@@ -53,32 +57,46 @@ do{
     }
 
     public Integer add_keychains(int addkeychain){
-
         totalKeychains += addkeychain;
-        System.out.println("You now have " + totalKeychains + " keychains!\n");
+        if(totalKeychains < 0){
+            totalKeychains -= addkeychain;
+            System.out.println("Your keychain total is less then 0 please try again.\n");
+        }else {
+            System.out.println("You now have " + totalKeychains + " keychains!\n");
+        }
         return totalKeychains;
     }
 
     public Integer remove_keychains(int removeKeychain){
         totalKeychains -= removeKeychain;
-        System.out.println("You now have " + totalKeychains + " keychains!\n");
-        return totalKeychains;
+        if(totalKeychains < 0){
+            totalKeychains += removeKeychain;
+            System.out.println("Your keychain total is less then 0 please try again.\n");
+        }else {
+            System.out.println("You now have " + totalKeychains + " keychains!\n");
+        }
+            return totalKeychains;
+
 
     }
-    public void view_order(int totalKeychains, int keychainPriceTotal){
-        keychainPriceTotal = totalKeychains * keychainprice;
+    public void view_order(int totalKeychains, double keychainPriceTotal, double salesTax, double shippingCost, double perKeychainShippingCost){
+        keychainPriceTotal = totalKeychains * keychainprice + salesTax + shippingCost + (perKeychainShippingCost * totalKeychains);
         System.out.println("you have " + totalKeychains + " keychains.");
         System.out.println("keychains cost $" + keychainprice + " each.");
-        System.out.println("total cost is $" + keychainPriceTotal + ".\n");
+        System.out.println("the sales tax is $" + salesTax);
+        System.out.println("the shipping cost is $" + shippingCost + " plus the cost per keychain shipping is $" + perKeychainShippingCost);
+        System.out.println("total cost after factoring in sales tax and shipping costs is $" + keychainPriceTotal + ".\n");
     }
-    public void checkout(int totalKeychains, int keychainPriceTotal){
-        keychainPriceTotal = totalKeychains * keychainprice;
+    public void checkout(int totalKeychains, double keychainPriceTotal, double salesTax, double shippingCost, double perKeychainShippingCost){
+        keychainPriceTotal = totalKeychains * keychainprice + salesTax + shippingCost + (perKeychainShippingCost * totalKeychains);
         System.out.println("what is you name?");
         String name = s.nextLine();
         System.out.println("you have " + totalKeychains + " keychains.");
         System.out.println("keychains cost $" + keychainprice + " each.");
-        System.out.println("total cost is $" + keychainPriceTotal + ".\n");
-        System.out.println("thank you for your order, " + name + "!");
+        System.out.println("the sales tax is $" + salesTax);
+        System.out.println("the shipping cost is $" + shippingCost + " plus the cost per keychain shipping is $" + perKeychainShippingCost);
+        System.out.println("total cost after factoring in sales tax and shipping costs is $" + keychainPriceTotal + ".\n");
+        System.out.println("Thank you for your order, " + name + "!");
 
     }
 }
