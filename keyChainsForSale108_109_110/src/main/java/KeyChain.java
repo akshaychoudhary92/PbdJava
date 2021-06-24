@@ -13,19 +13,19 @@ public class KeyChain {
         String choice;
 
         boolean shouldBreak = true;
-        System.out.println("Ye Olde Keychain Shoppe");
-        System.out.println("");
+        System.out.println("Ye Olde Keychain Shoppe" + System.lineSeparator());
+
 do{
         System.out.println("1. Add Keychains to Order\n" +
-                "2. Remove Keychains from Order\n" +
-                "3. View Current Order\n" +
-                "4. Checkout");
+            "2. Remove Keychains from Order\n" +
+            "3. View Current Order\n" +
+            "4. Checkout");
 
     System.out.println("");
 
-        System.out.println("Please enter your choice(choose 1 - 4 only): ");
+        System.out.println("Please enter your choice(choose 1 - 4 only): " + System.lineSeparator());
         choice = s.nextLine();
-        System.out.println("");
+
 
 
         switch(choice){

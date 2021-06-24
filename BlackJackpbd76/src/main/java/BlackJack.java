@@ -7,10 +7,17 @@ public class BlackJack {
     int playerCard1 = dealingCard();
     int playerCard2 = dealingCard();
     int dealerCard1 = dealingCard();
+    int dealerCard2 = hitCard();
+    int dealerCardTotal = dealerCard1 + dealerCard2;
     int hitCard = hitCard();
     int secondHitCard = hitCard();
     int firstHandTotal = playerTotal(playerCard1, playerCard2);
     int secondHandTotal;
+    int thirdHandTotal;
+    int forthHandTotal;
+    int fifthHandTotal;
+    int thirdHitCard = hitCard();
+    int forthHitCard = hitCard();
 
     boolean wouldYouLikeToHit = false;
     public void start(){
@@ -23,21 +30,55 @@ public class BlackJack {
         System.out.println("Would you like to stay or hit?");
         userInput = s.nextLine().toLowerCase();
 
-        if(userInput.equals("hit")){
+        if(userInput.equals("hit")) {
             hitMe();
             hitOrStay();
             userInput = s.nextLine();
-            if(wouldYouLikeToHit == true){
+            if(wouldYouLikeToHit == true && userInput.equals("hit")){
                 secondHitMe();
                 hitOrStay();
                 userInput = s.nextLine();
+                if(wouldYouLikeToHit == true && userInput.equals("hit")){
+                    thirdHitMe();
+                    hitOrStay();
+                    userInput = s.nextLine();
+                    if(wouldYouLikeToHit == true && userInput.equals("hit")){
+                        forthHitMe();
+                        hitOrStay();
+                        userInput = s.nextLine();
+                    }else{
+                        System.out.println("Store player total and do dealer logic after player hits third time");
+                    }
+                }else{
+                    System.out.println("Store player total and do dealer logic after player hits second time");
+                }
             }else{
-               // do nothing
-            };
-
-            System.out.println(wouldYouLikeToHit);
+                System.out.println("Store player total and do dealer logic after player first hit");
+            }
+            System.out.println("Player total is "+ fifthHandTotal +" and do dealer logic after player forth hit");
         }else{
-            System.out.println("didnt work");
+            System.out.println("player logic");
+        }
+
+        if(userInput.equals("stay") && wouldYouLikeToHit == false){
+            System.out.println("Okay, dealer's turn.");
+            System.out.println("His hidden card was " + dealerCard2 + " his original was " + dealerCard1);
+            System.out.println("His total was " + dealerCardTotal );
+
+            if(dealerCardTotal <= 17){
+                System.out.println("The dealer decides to hit");
+                int showDealerCard = hitCard();
+                dealerCardTotal += showDealerCard;
+                System.out.println("The hit card was " + showDealerCard);
+                System.out.println("His total is " + dealerCardTotal);
+                if(dealerCardTotal <= 17){
+                    System.out.println("the dealer decides to hit again");
+                    showDealerCard = hitCard();
+                    dealerCardTotal += hitCard();
+                    System.out.println("His hit card was " + showDealerCard);
+                    System.out.println("His total is " + dealerCardTotal);
+                }
+            }
         }
 
     }
@@ -66,13 +107,24 @@ public class BlackJack {
     }
 
     public void secondHitMe(){
-
         System.out.println("you drew a " + secondHitCard);
         System.out.println("your total is " + (secondHitCard + secondHandTotal));
+        thirdHandTotal = secondHitCard +secondHandTotal;
         wouldYouLikeToHit = false;
-
+    }
+    public void thirdHitMe(){
+        System.out.println("you drew a " + thirdHitCard);
+        System.out.println("your total is " + (thirdHitCard + thirdHandTotal));
+        forthHandTotal = thirdHitCard + thirdHandTotal;
+        wouldYouLikeToHit = false;
     }
 
+    public void forthHitMe(){
+        System.out.println("you drew a " + forthHitCard);
+        System.out.println("your total is " + (forthHitCard + forthHandTotal));
+        fifthHandTotal = forthHitCard + forthHandTotal;
+        wouldYouLikeToHit = false;
+    }
     public int playerTotal(int hand1, int hand2){
         int playTotal = hand1 + hand2;
         return playTotal;
@@ -85,8 +137,5 @@ public class BlackJack {
         }else{
             wouldYouLikeToHit = false;
         }
-
     }
-
-
 }
