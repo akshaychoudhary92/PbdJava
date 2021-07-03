@@ -8,14 +8,21 @@ public class KeyChain {
     double shippingCost = 5.00;
     double perKeychainShippingCost = 1.00;
     Scanner s = new Scanner(System.in);
+    String choice;
+    boolean playAgain;
+
+    public void introStatement(){
+        System.out.println("Ye Olde Keychain Shoppe" + System.lineSeparator());
+    }
+
     public void start(){
 
-        String choice;
+
 
         boolean shouldBreak = true;
-        System.out.println("Ye Olde Keychain Shoppe" + System.lineSeparator());
 
-do{
+
+
         System.out.println("1. Add Keychains to Order\n" +
             "2. Remove Keychains from Order\n" +
             "3. View Current Order\n" +
@@ -33,24 +40,28 @@ do{
                 System.out.println("You have " + totalKeychains + " keychains. How many to add?\n" );
                 int addkeychain = Integer.parseInt(s.nextLine());
                 add_keychains(addkeychain);
+
                 break;
             case "2":
                 System.out.println("you have " + totalKeychains + ". How many to remove?\n");
                 int removeKeychain = Integer.parseInt(s.nextLine());
                     remove_keychains(removeKeychain);
+
                     break;
 
             case "3" :
                 view_order(totalKeychains, keychainPriceTotal, salesTax, shippingCost, perKeychainShippingCost);
+
                 break;
             case "4":
                 checkout(totalKeychains, keychainPriceTotal, salesTax, shippingCost, perKeychainShippingCost);
                 shouldBreak = false;
+
                 break;
             default:
                 System.out.println("Please choose one of the 4 choices thank you!");
         }
-    }while(shouldBreak);
+
 
 
 
@@ -64,6 +75,7 @@ do{
         }else {
             System.out.println("You now have " + totalKeychains + " keychains!\n");
         }
+        wouldyouliketoplayagain();
         return totalKeychains;
     }
 
@@ -75,6 +87,7 @@ do{
         }else {
             System.out.println("You now have " + totalKeychains + " keychains!\n");
         }
+        wouldyouliketoplayagain();
             return totalKeychains;
 
 
@@ -86,6 +99,7 @@ do{
         System.out.println("the sales tax is $" + salesTax);
         System.out.println("the shipping cost is $" + shippingCost + " plus the cost per keychain shipping is $" + perKeychainShippingCost);
         System.out.println("total cost after factoring in sales tax and shipping costs is $" + keychainPriceTotal + ".\n");
+        wouldyouliketoplayagain();
     }
     public void checkout(int totalKeychains, double keychainPriceTotal, double salesTax, double shippingCost, double perKeychainShippingCost){
         keychainPriceTotal = totalKeychains * keychainprice + salesTax + shippingCost + (perKeychainShippingCost * totalKeychains);
@@ -97,6 +111,12 @@ do{
         System.out.println("the shipping cost is $" + shippingCost + " plus the cost per keychain shipping is $" + perKeychainShippingCost);
         System.out.println("total cost after factoring in sales tax and shipping costs is $" + keychainPriceTotal + ".\n");
         System.out.println("Thank you for your order, " + name + "!");
+        wouldyouliketoplayagain();
+    }
 
+    public void wouldyouliketoplayagain(){
+        if(playAgain = true){
+            start();
+        }
     }
 }
