@@ -4,8 +4,10 @@ public class Area {
     Scanner s = new Scanner(System.in);
     String userInput;
     Boolean shouldBreak = true;
+    boolean playAgain;
+
     public void start(){
-        do {
+
             System.out.println("1) Circle\n" +
                     "2) Rectangle\n" +
                     "3) Square\n" +
@@ -48,35 +50,45 @@ public class Area {
                 default:
                     System.out.println("Please choose options 1-5!\n");
             }
-        }while (shouldBreak);
+
 
     }
 
-    public static double area_circle(int radius){
+    public  double area_circle(int radius){
         double area = 0;
         area = Math.PI * (Math.pow(radius, 2));
         System.out.println(area + System.lineSeparator());
+        wouldYouLikeToPlayAgain();
         return area;
 
     }
-    public static int area_rectangle(int length, int width){
+    public int area_rectangle(int length, int width){
         int area = 0;
         area = length * width;
         System.out.println(area + System.lineSeparator());
+        wouldYouLikeToPlayAgain();
         return area;
 
     }
-    public static int area_square(int side){
+    public int area_square(int side){
         int area = 0;
         area = side << 2;
         System.out.println(area + System.lineSeparator());
+        wouldYouLikeToPlayAgain();
         return area;
     }
-    public static double area_triangle(int base, int height){
+    public double area_triangle(int base, int height){
         double area = 0;
         area = 0.5 * (base * height);
         System.out.println(area + System.lineSeparator());
+        wouldYouLikeToPlayAgain();
         return area;
 
+    }
+
+    public void wouldYouLikeToPlayAgain(){
+        if(playAgain == true){
+            start();
+        }
     }
 }
