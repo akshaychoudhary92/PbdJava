@@ -93,25 +93,35 @@ public class KeyChain {
 
     }
     public void view_order(int totalKeychains, double keychainPriceTotal, double salesTax, double shippingCost, double perKeychainShippingCost){
-        keychainPriceTotal = totalKeychains * keychainprice + salesTax + shippingCost + (perKeychainShippingCost * totalKeychains);
-        System.out.println("you have " + totalKeychains + " keychains.");
-        System.out.println("keychains cost $" + keychainprice + " each.");
-        System.out.println("the sales tax is $" + salesTax);
-        System.out.println("the shipping cost is $" + shippingCost + " plus the cost per keychain shipping is $" + perKeychainShippingCost);
-        System.out.println("total cost after factoring in sales tax and shipping costs is $" + keychainPriceTotal + ".\n");
-        wouldyouliketoplayagain();
+        if(totalKeychains == 0){
+            System.out.println("you dont have any keychains in your cart, please add key chains");
+            wouldyouliketoplayagain();
+        }else {
+            keychainPriceTotal = totalKeychains * keychainprice + salesTax + shippingCost + (perKeychainShippingCost * totalKeychains);
+            System.out.println("you have " + totalKeychains + " keychains.");
+            System.out.println("keychains cost $" + keychainprice + " each.");
+            System.out.println("the sales tax is $" + salesTax);
+            System.out.println("the shipping cost is $" + shippingCost + " plus the cost per keychain shipping is $" + perKeychainShippingCost);
+            System.out.println("total cost after factoring in sales tax and shipping costs is $" + keychainPriceTotal + ".\n");
+            wouldyouliketoplayagain();
+        }
     }
     public void checkout(int totalKeychains, double keychainPriceTotal, double salesTax, double shippingCost, double perKeychainShippingCost){
-        keychainPriceTotal = totalKeychains * keychainprice + salesTax + shippingCost + (perKeychainShippingCost * totalKeychains);
-        System.out.println("what is you name?");
-        String name = s.nextLine();
-        System.out.println("you have " + totalKeychains + " keychains.");
-        System.out.println("keychains cost $" + keychainprice + " each.");
-        System.out.println("the sales tax is $" + salesTax);
-        System.out.println("the shipping cost is $" + shippingCost + " plus the cost per keychain shipping is $" + perKeychainShippingCost);
-        System.out.println("total cost after factoring in sales tax and shipping costs is $" + keychainPriceTotal + ".\n");
-        System.out.println("Thank you for your order, " + name + "!");
-        wouldyouliketoplayagain();
+        if(totalKeychains == 0){
+            System.out.println("you dont have any keychains in your cart, please add key chains");
+            wouldyouliketoplayagain();
+        }else {
+            keychainPriceTotal = totalKeychains * keychainprice + salesTax + shippingCost + (perKeychainShippingCost * totalKeychains);
+            System.out.println("what is you name?");
+            String name = s.nextLine();
+            System.out.println("you have " + totalKeychains + " keychains.");
+            System.out.println("keychains cost $" + keychainprice + " each.");
+            System.out.println("the sales tax is $" + salesTax);
+            System.out.println("the shipping cost is $" + shippingCost + " plus the cost per keychain shipping is $" + perKeychainShippingCost);
+            System.out.println("total cost after factoring in sales tax and shipping costs is $" + keychainPriceTotal + ".\n");
+            System.out.println("Thank you for your order, " + name + "!");
+            wouldyouliketoplayagain();
+        }
     }
 
     public void wouldyouliketoplayagain(){
