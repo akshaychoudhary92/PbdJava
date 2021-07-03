@@ -33,15 +33,14 @@ public class Area {
                 case "3":
                     System.out.println("Side\n");
                     int side = Integer.parseInt(s.nextLine());
-
-                area_square(side);
+                    area_square(side);
                     break;
                 case "4":
                     System.out.println("base\n");
                     int base = Integer.parseInt(s.nextLine());
                     System.out.println("height\n");
                     int height = Integer.parseInt(s.nextLine());
-                area_triangle(base, height);
+                     area_triangle(base, height);
                 break;
                 case "5":
                     shouldBreak = false;
@@ -87,7 +86,7 @@ public class Area {
     }
 
     public void wouldYouLikeToPlayAgain(){
-        if(playAgain == true){
+        if(playAgain = true){
             start();
         }
     }
