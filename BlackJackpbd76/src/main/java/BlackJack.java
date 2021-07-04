@@ -86,6 +86,7 @@ public class BlackJack {
     public int dealingCard(){
         Random rand = new Random();
         int hand1 = rand.nextInt(11)+1;
+        System.out.println("new change ");
         return hand1;
     };
 
